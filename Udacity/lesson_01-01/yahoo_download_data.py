@@ -19,7 +19,7 @@ def get_csv(symbol='SPY', start='1997-01-01', end='2016-01-01'):
     if r.status_code != 200:
         return False
 
-    path = os.path.join('data/', str(symbol) + '.csv')
+    path = os.path.join('../data/', str(symbol) + '.csv')
     print(path)
 
     f = open(path, 'wb')
@@ -28,4 +28,5 @@ def get_csv(symbol='SPY', start='1997-01-01', end='2016-01-01'):
 
     return True
 
-get_csv(symbol='IBM')
+get_csv(symbol='GOOG')
+get_csv(symbol='GLD')

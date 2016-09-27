@@ -1,38 +1,23 @@
 """Build a dataframe in pandas."""
-
+import os
 import pandas as pd
 
 
-def test_run():
-    start_date = '2010-01-22'
-    end_date = '2010-01-26'
-    dates = pd.date_range(start_date, end_date)
+def symbol_to_path(symbol, base_dir="../data"):
+    """Return CSV file path given ticker symbol."""
+    return os.path.join(base_dir, "{}.csv".format(str(symbol)))
 
-    # Create an empty dataframe with (consecutive dates only)
-    df1 = pd.DataFrame(index=dates)
 
-    # Read SPY data into temporary dataframe
-    dfSPY = pd.read_csv("../data/SPY.csv",
-                        index_col="Date",                   # by default integer is used as an index
-                        parse_dates=True,
-                        usecols=['Date', 'Adj Close'],      # we're interested in only 2 columns
-                        na_values=['nan'])
+def get_data(symbols, dates):
+    """Read stock data (adjusted close) for given symbols from CSV files."""
+    df = pd.DataFrame(index=dates)
 
-    # Rename 'Adj Close' colummn to 'SPY' to prevent clash
-    dfSPY = dfSPY.rename(columns={'Adj Close': 'SPY'})
+    if 'SPY' not in symbols:    # add SPY for reference, if absent
+        symbols.insert(0, 'SPY')
 
-    # (Inner) Join the two dataframes
-    df1 = df1.join(dfSPY, how='inner')
-
-    # alternatively, (Left) join the two dataframes using DataFrame.join()
-    # and drop NaN Values
-    #df1 = df1.join(dfSPY)
-    #df1 = df1.dropna()
-
-    # Read in more stocks
-    symbols = ['GOOG', 'IBM', 'GLD']
     for symbol in symbols:
-        df_temp = pd.read_csv("../data/{}.csv".format(symbol),
+        # Read SPY data into temporary dataframe
+        df_temp = pd.read_csv(symbol_to_path(symbol),
                               index_col="Date",  # by default integer is used as an index
                               parse_dates=True,
                               usecols=['Date', 'Adj Close'],  # we're interested in only 2 columns
@@ -40,9 +25,23 @@ def test_run():
 
         # Rename to prevent clash
         df_temp = df_temp.rename(columns={'Adj Close': symbol})
-        df1 = df1.join(df_temp)  # use default how='left'
+        df = df.join(df_temp)
+        if symbol == 'SPY':  # drop dates SPY did not trade
+            df = df.dropna(subset=["SPY"])
 
-    print(df1)
+    return df
+
+
+def test_run():
+    # Define a date range
+    dates = pd.date_range('2010-01-22', '2010-01-26')
+
+    # Choose stock symbols to read
+    symbols = ['GOOG', 'IBM', 'GLD']
+
+    # Get stock data
+    df = get_data(symbols, dates)
+    print(df)
 
 
 if __name__ == "__main__":

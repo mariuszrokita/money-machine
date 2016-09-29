@@ -28,5 +28,4 @@ def get_csv(symbol='SPY', start='1997-01-01', end='2016-01-01'):
 
     return True
 
-get_csv(symbol='GOOG')
-get_csv(symbol='GLD')
+get_csv(symbol='XOM')

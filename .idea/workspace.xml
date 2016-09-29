@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd106b9c-9b37-497e-8d36-a75430dc6a35" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Udacity/lesson_01-03/numpy_getting_started.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Udacity/lesson_01-03/time_functions.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Udacity/lesson_01-01/get_max_close.py" afterPath="$PROJECT_DIR$/Udacity/lesson_01_01/get_max_close.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Udacity/lesson_01-01/plotting_stock_price_data.py" afterPath="$PROJECT_DIR$/Udacity/lesson_01_01/plotting_stock_price_data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Udacity/lesson_01-01/yahoo_download_data.py" afterPath="$PROJECT_DIR$/Udacity/lesson_01_01/yahoo_download_data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Udacity/lesson_01-02/build_dataframes.py" afterPath="$PROJECT_DIR$/Udacity/lesson_01_02/build_dataframes.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Udacity/data/XOM.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Udacity/lesson_01_04/daily_returns.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Udacity/lesson_01_04/rolling_statistics.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EURPLN_exchange_rate_analysis.ipynb" afterPath="$PROJECT_DIR$/EURPLN_exchange_rate_analysis.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Udacity/lesson_01_01/yahoo_download_data.py" afterPath="$PROJECT_DIR$/Udacity/lesson_01_01/yahoo_download_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py" afterPath="$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py" />
     </list>
     <ignored path="money-machine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,32 +26,7 @@
     <favorites_list name="money-machine" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="statistical_analysis.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-              <folding>
-                <element signature="e#35#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build_dataframes.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_02/build_dataframes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-748">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="31" />
-              <folding>
-                <element signature="e#35#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -81,13 +53,17 @@
         <option value="$PROJECT_DIR$/Udacity/lesson_01-03/time_functions.py" />
         <option value="$PROJECT_DIR$/Udacity/lesson_01-03/numpy_getting_started.py" />
         <option value="$PROJECT_DIR$/Udacity/lesson_01-04/statistical_analysis.py" />
+        <option value="$PROJECT_DIR$/Udacity/lesson_01_01/yahoo_download_data.py" />
+        <option value="$PROJECT_DIR$/Udacity/__init__.py" />
         <option value="$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py" />
+        <option value="$PROJECT_DIR$/Udacity/lesson_01_04/rolling_statistics.py" />
+        <option value="$PROJECT_DIR$/Udacity/lesson_01_04/daily_returns.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="971" />
-    <option name="width" value="1199" />
+    <option name="x" value="1313" />
+    <option name="width" value="1254" />
     <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -115,6 +91,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -165,46 +143,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="money-machine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="money-machine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Udacity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesson_01_02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="money-machine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="money-machine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Udacity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesson_01_01" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -214,14 +154,17 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01_02" />
       <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01-02" />
       <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01-01" />
       <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01_04" />
+      <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01_02" />
+      <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity" />
       <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01-04" />
       <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity\lesson_01-03" />
-      <recent name="C:\Users\mra\Documents\GitHubRepositories\money-machine\Udacity" />
     </key>
   </component>
   <component name="RunManager">
@@ -386,26 +329,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="971" y="0" width="1199" height="1087" extended-state="0" />
-    <editor active="true" />
+    <frame x="1313" y="0" width="1254" height="1087" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1920758" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18338816" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3322851" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3322851" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -445,6 +388,42 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#35#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_02/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_02/build_dataframes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="62" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="e#35#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_02/build_dataframes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -483,13 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_01/yahoo_download_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_01/plotting_stock_price_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -504,20 +476,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01-03/numpy_getting_started.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01-03/time_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01-03/numpy_getting_started.py" />
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01-03/time_functions.py" />
     <entry file="file://$PROJECT_DIR$/EURPLN_exchange_rate_analysis.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -525,17 +485,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_01/yahoo_download_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_02/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_02/build_dataframes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-748">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="31" />
+        <state relative-caret-position="575">
+          <caret line="83" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding>
             <element signature="e#35#44#0" expanded="true" />
           </folding>
@@ -544,11 +520,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_04/statistical_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="391">
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding>
             <element signature="e#35#44#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_04/rolling_statistics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Udacity/lesson_01_04/daily_returns.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="58" column="66" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>

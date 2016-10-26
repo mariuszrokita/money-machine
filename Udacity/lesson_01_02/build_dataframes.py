@@ -3,8 +3,10 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import Udacity.util as util
 
-def symbol_to_path(symbol, base_dir="../data"):
+
+def symbol_to_path(symbol, base_dir="..\\data"):
     """Return CSV file path given ticker symbol."""
     return os.path.join(base_dir, "{}.csv".format(str(symbol)))
 
@@ -18,7 +20,10 @@ def get_data(symbols, dates):
 
     for symbol in symbols:
         # Read SPY data into temporary dataframe
-        df_temp = pd.read_csv(symbol_to_path(symbol),
+        current_file = os.path.abspath(os.path.dirname(__file__))
+        base_dir = os.path.join(current_file, ".\\data")
+
+        df_temp = pd.read_csv(symbol_to_path(symbol, base_dir),
                               index_col="Date",  # by default integer is used as an index
                               parse_dates=True,
                               usecols=['Date', 'Adj Close'],  # we're interested in only 2 columns
@@ -59,7 +64,9 @@ def test_run():
     symbols = ['GOOG', 'IBM', 'GLD']  # SPY will be added in get_data()
 
     # Get stock data
-    df = get_data(symbols, dates)
+    df = util.get_data(symbols, dates)
+
+    print(df)
 
     # Normalize data
     df = normalize_data(df)

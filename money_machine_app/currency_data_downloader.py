@@ -51,6 +51,10 @@ def download_data(currency_symbol="EUR", start_date="2013-01-01", end_date="2016
 
 
 if __name__ == "__main__":
-    download_data(sys.argv[0], sys.argv[1], sys.argv[2])
-
+    #download_data(sys.argv[0], sys.argv[1], sys.argv[2])
+    start = '2012-01-01'
+    end = '2016-12-31'
+    download_data('EUR', start, end)
+    download_data('USD', start, end)
+    download_data('GBP', start, end)
 

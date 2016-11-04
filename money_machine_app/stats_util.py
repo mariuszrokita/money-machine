@@ -21,6 +21,15 @@ def get_bollinger_bands(rolling_mean, rolling_std):
     return upper_band, lower_band
 
 
+def compute_daily_returns(df):
+    """Compute and return the daily return values."""
+    daily_returns = df.copy()  # copy given DataFrame to mach size and column names
+    # compute daily returns for row 1 onwards
+    daily_returns[1:] = (df[1:] / df[:-1].values) - 1
+    daily_returns.ix[0, :] = 0 # set daily returns for row 0 to 0
+    return daily_returns
+
+
 def plot_data(df, title="Exchange rates", ylabel="Price"):
     """Plot provided data frame."""
     ax = df.plot(title=title, fontsize=12)

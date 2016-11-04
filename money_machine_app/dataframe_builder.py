@@ -1,4 +1,5 @@
 """Build a dataframe in pandas."""
+import datetime as dt
 import pandas as pd
 import matplotlib.pyplot as plt
 import money_machine_app.io_util as util
@@ -13,7 +14,8 @@ def build_dataframe(symbols, dates):
 
 def test_run():
     # Define a date range
-    dates = pd.date_range('2016-06-01', '2016-10-31')
+    dates = pd.date_range('2016-06-01', '2016-12-31')
+    # dates = pd.date_range('2014-01-01', '2016-12-31')
 
     # Choose currency symbols to read
     symbols = ['EUR', 'USD', 'GBP']
@@ -22,72 +24,78 @@ def test_run():
     df = build_dataframe(symbols, dates)
 
     ##################
-    # EUR - statistics
+    # statistics
     ##################
+    symbols_stats = ['EUR', 'USD', 'GBP']
+    # symbols_stats = ['EUR']
 
-    sma5_eur = stats_util.get_rolling_mean(df['EUR'], window=5)
-    sma20_eur = stats_util.get_rolling_mean(df['EUR'], window=20)
-    rstd_eur = stats_util.get_rolling_std(df['EUR'], window=20)
-    upper_band_eur, lower_band_eur = stats_util.get_bollinger_bands(sma20_eur, rstd_eur)
+    daily_returns = stats_util.compute_daily_returns(df)
+    print(daily_returns)
 
-    # visualize data
-    ax_eur = df['EUR'].plot(title="EUR - statistics", color='b', label="EUR exchange rates")
-    sma5_eur.plot(label="SMA 5", color='c', linestyle='--', ax=ax_eur)
-    sma20_eur.plot(label="SMA 20", color='m', linestyle=':', ax=ax_eur)
-    upper_band_eur.plot(label="Upper Bollinger band", color='r', ax=ax_eur)
-    lower_band_eur.plot(label="Lower Bollinger band", color='g', ax=ax_eur)
-    ax_eur.set_xlabel("Date")
-    ax_eur.set_ylabel("Price")
-    ax_eur.legend(loc="upper right")
+    for symbol in symbols_stats:
+        window_1 = 5
+        window_2 = 20
+        sma1 = stats_util.get_rolling_mean(df[symbol], window=window_1)
+        sma2 = stats_util.get_rolling_mean(df[symbol], window=window_2)
+        rstd = stats_util.get_rolling_std(df[symbol], window=window_2)
+        upper_band, lower_band = stats_util.get_bollinger_bands(sma2, rstd)
 
-    # show intersection points between SMA-5 and SMA-20
-    x_values = range(0, len(sma5_eur), 1)
-    intersection_points = math_util.get_intersection_points(x_values, sma5_eur, sma20_eur)
-    for intersect_point in intersection_points:
-        plt.plot(intersect_point[0], intersect_point[1], 'co')
+        # visualize data
+        ax = df[symbol].plot(title="{} - statistics".format(symbol),
+                             color='b',
+                             label="{} exchange rates".format(symbol))
+        sma1.plot(label="SMA {}".format(window_1), color='c', linestyle='--', ax=ax)
+        sma2.plot(label="SMA {}".format(window_2), color='m', linestyle=':', ax=ax)
+        upper_band.plot(label="Upper Bollinger band", color='r', ax=ax)
+        lower_band.plot(label="Lower Bollinger band", color='g', ax=ax)
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Price")
+        ax.legend(loc="upper right")
 
-    plt.grid()
-    plt.show()
+        # # show intersection points between SMA-5 and SMA-20
+        sma1_sma2_intersection_points = math_util.get_intersection_points(sma1, sma2)
+        for intersect_point in sma1_sma2_intersection_points:
+            plt.plot(intersect_point[0], intersect_point[1], 'mo')
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            ax.text(intersect_point[0],                                                     # x-axis
+                    intersect_point[1] + 0.005,                                             # y-axis
+                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    color="magenta",
+                    fontsize=11)
 
-    # ##################
-    # # USD - statistics
-    # ##################
-    #
-    # sma5_usd = stats_util.get_rolling_mean(df['USD'], window=5)
-    # sma20_usd = stats_util.get_rolling_mean(df['USD'], window=20)
-    # rstd_usd = stats_util.get_rolling_std(df['USD'], window=20)
-    # upper_band_usd, lower_band_usd = stats_util.get_bollinger_bands(sma20_usd, rstd_usd)
-    #
-    # # visualize data
-    # ax_usd = df['USD'].plot(title="USD - statistics", color='b', label="USD exchange rates")
-    # sma5_usd.plot(label="SMA 5", color='c', linestyle='--', ax=ax_usd)
-    # sma20_usd.plot(label="SMA 20", color='m', linestyle=':', ax=ax_usd)
-    # upper_band_usd.plot(label="Upper Bollinger band", color='r', ax=ax_usd)
-    # lower_band_usd.plot(label="Lower Bollinger band", color='g', ax=ax_usd)
-    # ax_usd.set_xlabel("Date")
-    # ax_usd.set_ylabel("Price")
-    # ax_usd.legend(loc="upper right")
-    # plt.show()
-    #
-    # ##################
-    # # GBP - statistics
-    # ##################
-    #
-    # sma5_gbp = stats_util.get_rolling_mean(df['GBP'], window=5)
-    # sma20_gbp = stats_util.get_rolling_mean(df['GBP'], window=20)
-    # rstd_gbp = stats_util.get_rolling_std(df['GBP'], window=20)
-    # upper_band_gbp, lower_band_gbp = stats_util.get_bollinger_bands(sma20_gbp, rstd_gbp)
-    #
-    # # visualize data
-    # ax_gbp = df['GBP'].plot(title="GBP - statistics", color='b', label="GBP exchange rates")
-    # sma5_gbp.plot(label="SMA 5", color='c', linestyle='--', ax=ax_gbp)
-    # sma20_gbp.plot(label="SMA 20", color='m', linestyle=':', ax=ax_gbp)
-    # upper_band_gbp.plot(label="Upper Bollinger band", color='r', ax=ax_gbp)
-    # lower_band_gbp.plot(label="Lower Bollinger band", color='g', ax=ax_gbp)
-    # ax_gbp.set_xlabel("Date")
-    # ax_gbp.set_ylabel("Price")
-    # ax_gbp.legend(loc="upper right")
-    # plt.show()
+        # show intersection points between exchange rates and Bollinger bands
+        exchange_rates_for_analysis = df[symbol][-len(upper_band):]
+
+        # print("x_values:")
+        # print(x_values)
+        # print("exchange_rates_for_analysis:")
+        # print(exchange_rates_for_analysis)
+        # print("len of exchange_rates_for_analysis, ", len(exchange_rates_for_analysis))
+        # print("upper band:")
+        # print(upper_band)
+        # print("len of upper_band, ", len(upper_band))
+        er_ub_intersection_points = math_util.get_intersection_points(exchange_rates_for_analysis, upper_band)
+        for intersect_point in er_ub_intersection_points:
+            plt.plot(intersect_point[0], intersect_point[1], 'ro')
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            ax.text(intersect_point[0],                                                     # x-axis
+                    intersect_point[1] + 0.005,                                             # y-axis
+                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    color="red",
+                    fontsize=11)
+
+        er_lb_intersection_points = math_util.get_intersection_points(exchange_rates_for_analysis, lower_band)
+        for intersect_point in er_lb_intersection_points:
+            plt.plot(intersect_point[0], intersect_point[1], 'go')
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            ax.text(intersect_point[0],                                                     # x-axis
+                    intersect_point[1] + 0.005,                                             # y-axis
+                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    color="green",
+                    fontsize=11)
+
+        plt.grid()
+        plt.show()
 
 
 if __name__ == "__main__":

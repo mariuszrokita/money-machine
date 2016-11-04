@@ -46,23 +46,38 @@ def convert_values_on_x_axis(intersection_points, y_series):
     corrected_intersection_points = []
     for intersect_point in intersection_points:
         # determine date of closest next day after intersection took place
-        day_number = math.ceil(intersect_point[0])
+        # print("+++++ intersect point: ", intersect_point[0])
+        day_number = round(intersect_point[0])  # alternative: math.ceil(intersect_point[0])
         date = y_series.index.values[day_number]
+        # print("+++++ calculated date: ", date)
         corrected_intersection_points.append(array([date, intersect_point[1]]))
 
     return corrected_intersection_points
 
 
-def get_intersection_points(x_values, y_series_1, y_series_2):
+def get_intersection_points(y_series_1, y_series_2):
     """Returns intersection points between two time series"""
+    if len(y_series_1) != len(y_series_2):
+        raise Exception("Lengths of both collections have to be same.")
+
+    x_values = range(0, len(y_series_1), 1)
+
     intersection_points = []
     for x in x_values[:-1]:
+        # print('--next iteration--')
+        # print('point 1, [{}, {}]'.format(x, y_series_1[x]))
+        # print('point 2, [{}, {}]'.format(x + 1, y_series_1[x + 1]))
+        # print('point 3, [{}, {}]'.format(x, y_series_2[x]))
+        # print('point 4, [{}, {}]'.format(x + 1, y_series_2[x + 1]))
         point = get_intersection_point_between_points(array([x, y_series_1[x]]),
                                                       array([x + 1, y_series_1[x + 1]]),
                                                       array([x, y_series_2[x]]),
                                                       array([x + 1, y_series_2[x + 1]]))
+
+        # print("=== POINT: [{}, {}]".format(point[0], point[1]))
         if not math.isnan(point[0]):
             intersection_points.append(point)
+            # print("=== POINT ADDED TO COLLECTION")
 
     intersection_points = convert_values_on_x_axis(intersection_points, y_series_1)
     return intersection_points

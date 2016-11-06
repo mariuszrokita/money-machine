@@ -1,5 +1,4 @@
 """Build a dataframe in pandas."""
-import datetime as dt
 import pandas as pd
 import matplotlib.pyplot as plt
 import money_machine_app.io_util as util

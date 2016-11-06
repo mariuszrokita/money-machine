@@ -9,9 +9,9 @@ def get_base_dir(folder="..\\data-archive"):
     return os.path.join(current_file, folder)
 
 
-def symbol_to_path(symbol, base_dir="..\\data-archive"):
+def symbol_to_path(symbol, base_dir="..\\data-archive", subfolder=""):
     """Return CSV file path given ticker symbol."""
-    return os.path.join(base_dir, "{}.csv".format(str(symbol)))
+    return os.path.join(base_dir, subfolder, "{}.csv".format(str(symbol)))
 
 
 def get_currency_data(symbols, dates):
@@ -19,7 +19,7 @@ def get_currency_data(symbols, dates):
     df = pd.DataFrame(index=dates)
 
     for symbol in symbols:
-        df_temp = pd.read_csv(symbol_to_path(symbol, get_base_dir()),
+        df_temp = pd.read_csv(symbol_to_path(symbol, get_base_dir(), subfolder="currencies"),
                               delimiter=";",
                               index_col="Data",  # by default integer is used as an index
                               parse_dates=True,

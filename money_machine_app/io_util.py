@@ -30,5 +30,25 @@ def get_currency_data(symbols, dates):
         df_temp = df_temp.rename(columns={'Kurs': symbol})
         df = df.join(df_temp)
         df = df.dropna()  # drop dates without exchange rates
+    return df
 
+
+def get_stock_data(symbols, dates):
+    """Read stock data (exchange rate) for given symbols from CSV files."""
+    # create an empty dataframe
+    df = pd.DataFrame(index=dates)
+
+    for symbol in symbols:
+        df_temp = pd.read_csv(symbol_to_path(symbol, get_base_dir(), subfolder="stocks"),
+                              delimiter=",",
+                              index_col="Data",  # by default integer is used as an index
+                              parse_dates=True,
+                              usecols=['Data', 'Zamkniecie'],  # we're interested in only 2 columns
+                              na_values=['nan'])
+
+        # Rename to prevent clash
+        df_temp = df_temp.rename(columns={'Zamkniecie': symbol})
+        df = df.join(df_temp)
+        if symbol == 'GPW':  # drop dates GPW did not trade
+            df = df.dropna(subset=["GPW"])
     return df

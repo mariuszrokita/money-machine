@@ -49,6 +49,6 @@ def get_stock_data(symbols, dates):
         # Rename to prevent clash
         df_temp = df_temp.rename(columns={'Zamkniecie': symbol})
         df = df.join(df_temp)
-        if symbol == 'GPW':  # drop dates GPW did not trade
-            df = df.dropna(subset=["GPW"])
+        if symbol == 'WIG':  # drop dates when Giełda Papierów Wartościowych did not trade
+            df = df.dropna(subset=["WIG"])
     return df

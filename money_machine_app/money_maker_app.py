@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import money_machine_app.io_util as util
 import money_machine_app.math_util as math_util
 import money_machine_app.stats_util as stats_util
+import money_machine_app.stocks_data_downloader as sdd
+import money_machine_app.currency_data_downloader as cdd
 
 
 def build_currency_dataframe(symbols, dates):
@@ -148,14 +150,28 @@ def compute_and_show_stock_statistics(df, symbols, window_1, window_2):
         plt.show()
 
 
+def get_latest_stocks(symbols):
+    for symbol in symbols:
+        sdd.download_data(stock_symbol=symbol, start_date="2012-01-01", end_date="2016-12-31")
+
+
+def get_latest_currencies(symbols):
+    for symbol in symbols:
+        cdd.download_data(currency_symbol=symbol, start_date="2012-01-01", end_date="2016-12-31")
+
+
 def test_run():
-    available_stock_symbols = ['GPW', 'KRU', 'JSW', 'ETFW20L.PL']
+    available_stock_symbols = ['WIG', 'KRU', 'JSW', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
     available_currency_symbols = ['EUR', 'USD', 'GBP']
+
+    # download latest data
+    get_latest_stocks(available_stock_symbols)
+    get_latest_currencies(available_currency_symbols)
 
     # configure stock analysis
     analyse_stocks = 1
     stocks_time_frame = pd.date_range('2016-01-01', '2016-12-31')
-    stocks_for_stats = ['KRU', 'JSW', 'ETFW20L.PL']
+    stocks_for_stats = ['KRU', 'JSW', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
     stocks_window_1 = 10
     stocks_window_2 = 50
 

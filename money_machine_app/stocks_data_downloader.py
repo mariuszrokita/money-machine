@@ -64,6 +64,6 @@ if __name__ == "__main__":
     start = '2012-01-01'
     end = '2016-12-31'
 
-    stock_symbols = ['GPW', 'KRU', 'JSW', 'ETFW20L.PL']
+    stock_symbols = ['WIG', 'KRU', 'JSW', 'ETFW20L.PL']
     for symbol in stock_symbols:
         download_data(symbol, start, end)

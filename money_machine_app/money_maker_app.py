@@ -164,51 +164,53 @@ def get_latest_currencies(symbols):
 
 
 def test_run():
-
     # download latest data for all assets we are interested in
+    download_data = False
     available_stock_symbols = ['WIG', 'KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
     available_etf_symbols = ['WIG', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
     available_currency_symbols = ['EUR', 'USD', 'GBP', 'CHF']
-    get_latest_stocks(available_stock_symbols)
-    get_latest_stocks(available_etf_symbols)
-    get_latest_currencies(available_currency_symbols)
 
     # configure stock analysis
-    analyse_stocks = 1
+    analyse_stocks = False
     stocks_time_frame = pd.date_range('2016-01-01', '2017-12-31')
     stocks_for_stats = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
     stocks_window_1 = 15  # popular pairs: 15 and 45, 10 and 50.
     stocks_window_2 = 45
 
     # configure ETF analysis
-    analyse_etfs = 0
+    analyse_etfs = False
     etfs_time_frame = pd.date_range('2016-01-01', '2017-12-31')
     etfs_for_stats = ['ETFW20L.PL', 'ETFSP500.PL']
     etfs_window_1 = 10
     etfs_window_2 = 50
 
     # configure currency analysis
-    analyse_currencies = 0
+    analyse_currencies = False
     currencies_time_frame = pd.date_range('2016-01-01', '2017-12-31')
     currencies_for_stats = ['EUR', 'USD', 'GBP', 'CHF']
     currencies_window_1 = 5
     currencies_window_2 = 20
 
-    if analyse_stocks:
+    if download_data is True:
+        get_latest_stocks(available_stock_symbols)
+        get_latest_stocks(available_etf_symbols)
+        get_latest_currencies(available_currency_symbols)
+
+    if analyse_stocks is True:
         df = build_stocks_dataframe(available_stock_symbols, stocks_time_frame)
         compute_and_show_stock_statistics(df,
                                           symbols=stocks_for_stats,
                                           window_1=stocks_window_1,
                                           window_2=stocks_window_2)
 
-    if analyse_etfs:
+    if analyse_etfs is True:
         df = build_stocks_dataframe(available_etf_symbols, etfs_time_frame)
         compute_and_show_stock_statistics(df,
                                           symbols=etfs_for_stats,
                                           window_1=etfs_window_1,
                                           window_2=etfs_window_2)
 
-    if analyse_currencies:
+    if analyse_currencies is True:
         df = build_currency_dataframe(available_currency_symbols, currencies_time_frame)
         compute_and_show_currency_statistics(df,
                                              symbols=currencies_for_stats,

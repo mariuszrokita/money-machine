@@ -1,5 +1,4 @@
 import urllib.request
-import sys
 import os
 
 
@@ -56,6 +55,7 @@ def save_data_as_file(symbol, csv_content):
 def download_data(stock_symbol="KRU", start_date="2012-01-01", end_date="2016-12-31"):
     """Gets currency data from web and saves in the file."""
     url = get_source_url(stock_symbol, start_date, end_date)
+    print("Attempting to download stocks data from address: " + url)
     csv_content = get_csv(url)
     save_data_as_file(stock_symbol, csv_content)
 

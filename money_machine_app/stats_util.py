@@ -6,12 +6,13 @@ import matplotlib.pyplot as plt
 
 def get_rolling_mean(values, window):
     """Return rolling mean of given values, using specified window size."""
-    return pd.rolling_mean(values, window=window)
+    return values.rolling(window=window, center=False).mean()
 
 
 def get_rolling_std(values, window):
     """Return rolling standard deviation of given values, using specified window size."""
-    return pd.rolling_std(values, window=window)
+    #return pd.rolling_mean(values, window=window)
+    return values.rolling(window=window, center=False).std()
 
 
 def get_bollinger_bands(rolling_mean, rolling_std):

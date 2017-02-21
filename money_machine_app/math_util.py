@@ -4,9 +4,8 @@
 #
 # Borrowed directly from http://www.cs.mun.ca/~rod/2500/notes/numpy-arrays/numpy-arrays.html
 
-"""Set of utilities providing """
+"""Set of utilities providing... """
 
-import math
 from numpy import *
 
 
@@ -82,6 +81,7 @@ def get_intersection_points(y_series_1, y_series_2):
     intersection_points = convert_values_on_x_axis(intersection_points, y_series_1)
     return intersection_points
 
+# TODO: write code which could determine Buy/Sell points
 # def get_buy_sell_points(x_values, y_values_1, y_values_2):
 #     intersection_points = get_intersection_points(x_values, y_values_1, y_values_2)
 #

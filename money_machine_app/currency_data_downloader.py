@@ -1,5 +1,9 @@
+"""
+Module responsible for downloading CURRENCY data from http://www.bankier.pl website
+and saving them into CSV files.
+"""
+
 import urllib.request
-import sys
 import os
 
 
@@ -12,7 +16,9 @@ def get_source_url(currency_symbol, start_date, end_date):
 
 
 def get_csv(url):
-    """Returns CSV content with exchange rates"""
+    """
+    Returns CSV content with exchange rates downloaded from provided URL address.
+    """
     with urllib.request.urlopen(url) as response:
         content = str(response.read(), errors='ignore')
 
@@ -26,9 +32,9 @@ def get_base_dir(folder="..\\data-archive"):
     return os.path.join(current_file, folder)
 
 
-def symbol_to_path(symbol, base_dir="..\\data-archive", subfolder="currencies"):
+def symbol_to_path(symbol, base_dir="..\\data-archive", sub_folder="currencies"):
     """Return CSV file path given ticker symbol."""
-    return os.path.join(base_dir, subfolder, "{}.csv".format(str(symbol)))
+    return os.path.join(base_dir, sub_folder, "{}.csv".format(str(symbol)))
 
 
 def save_data_as_file(symbol, csv_content):

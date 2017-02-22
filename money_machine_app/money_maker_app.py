@@ -9,6 +9,7 @@ import money_machine_app.math_util as math_util
 import money_machine_app.stats_util as stats_util
 import money_machine_app.stocks_data_downloader as sdd
 import money_machine_app.currency_data_downloader as cdd
+from datetime import date
 
 
 def build_currency_dataframe(symbols, dates):
@@ -153,48 +154,58 @@ def compute_and_show_stock_statistics(df, symbols, window_1, window_2):
         plt.show()
 
 
-def get_latest_stocks(symbols):
-    for symbol in symbols:
-        sdd.download_data(stock_symbol=symbol, start_date="2012-01-01", end_date="2016-12-31")
+def get_last_date_of_current_year():
+    """Return a string representing the last date of current year in ISO 8601 format, ‘YYYY-MM-DD’."""
+    return date(year=date.today().year, month=12, day=31).isoformat()
 
 
-def get_latest_currencies(symbols):
+def get_latest_stocks(symbols, start_date, end_date):
     for symbol in symbols:
-        cdd.download_data(currency_symbol=symbol, start_date="2012-01-01", end_date="2016-12-31")
+        sdd.download_data(stock_symbol=symbol, start_date=start_date, end_date=end_date)
+
+
+def get_latest_currencies(symbols, start_date, end_date):
+    for symbol in symbols:
+        cdd.download_data(currency_symbol=symbol, start_date=start_date, end_date=end_date)
 
 
 def test_run():
-    # download latest data for all assets we are interested in
+
+    # choose what you want to do
     download_data = False
-    available_stock_symbols = ['WIG', 'KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
-    available_etf_symbols = ['WIG', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
+    analyse_stocks = False
+    analyse_etfs = False
+    analyse_currencies = False
+
+    # download latest data for all assets we are interested in
+    available_stock_symbols = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
+    available_etf_symbols = ['WIG', 'GPW', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
     available_currency_symbols = ['EUR', 'USD', 'GBP', 'CHF']
+    download_data_start_date = "2012-01-01"
+    download_data_last_date = get_last_date_of_current_year()
 
     # configure stock analysis
-    analyse_stocks = False
     stocks_time_frame = pd.date_range('2016-01-01', '2017-12-31')
     stocks_for_stats = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
     stocks_window_1 = 15  # popular pairs: 15 and 45, 10 and 50.
     stocks_window_2 = 45
 
     # configure ETF analysis
-    analyse_etfs = False
     etfs_time_frame = pd.date_range('2016-01-01', '2017-12-31')
     etfs_for_stats = ['ETFW20L.PL', 'ETFSP500.PL']
     etfs_window_1 = 10
     etfs_window_2 = 50
 
     # configure currency analysis
-    analyse_currencies = False
     currencies_time_frame = pd.date_range('2016-01-01', '2017-12-31')
     currencies_for_stats = ['EUR', 'USD', 'GBP', 'CHF']
     currencies_window_1 = 5
     currencies_window_2 = 20
 
     if download_data is True:
-        get_latest_stocks(available_stock_symbols)
-        get_latest_stocks(available_etf_symbols)
-        get_latest_currencies(available_currency_symbols)
+        get_latest_stocks(available_stock_symbols, download_data_start_date, download_data_last_date)
+        get_latest_stocks(available_etf_symbols, download_data_start_date, download_data_last_date)
+        get_latest_currencies(available_currency_symbols, download_data_start_date, download_data_last_date)
 
     if analyse_stocks is True:
         df = build_stocks_dataframe(available_stock_symbols, stocks_time_frame)

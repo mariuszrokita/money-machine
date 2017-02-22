@@ -22,7 +22,7 @@ def build_stocks_dataframe(symbols, dates):
     return df
 
 
-def compute_and_show_currency_statistics(df, symbols, window_1, window_2):
+def compute_and_show_currency_stats(df, symbols, window_1, window_2):
     for symbol in symbols:
         sma1 = stats_util.get_rolling_mean(df[symbol], window=window_1)
         sma2 = stats_util.get_rolling_mean(df[symbol], window=window_2)
@@ -88,7 +88,7 @@ def compute_and_show_currency_statistics(df, symbols, window_1, window_2):
         plt.show()
 
 
-def compute_and_show_stock_statistics(df, symbols, window_1, window_2):
+def compute_and_show_stock_stats(df, symbols, window_1, window_2):
     for symbol in symbols:
         sma1 = stats_util.get_rolling_mean(df[symbol], window=window_1)
         sma2 = stats_util.get_rolling_mean(df[symbol], window=window_2)
@@ -173,13 +173,13 @@ def test_run():
 
     # choose what you want to do
     download_data = False
-    analyse_stocks = False
-    analyse_etfs = False
-    analyse_currencies = False
+    analyse_stocks = True
+    analyse_etfs = True
+    analyse_currencies = True
 
     # download latest data for all assets we are interested in
     available_stock_symbols = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
-    available_etf_symbols = ['WIG', 'GPW', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
+    available_etf_symbols = ['GPW', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
     available_currency_symbols = ['EUR', 'USD', 'GBP', 'CHF']
     download_data_start_date = "2012-01-01"
     download_data_last_date = get_last_date_of_current_year()
@@ -203,30 +203,30 @@ def test_run():
     currencies_window_2 = 20
 
     if download_data is True:
-        get_latest_stocks(available_stock_symbols, download_data_start_date, download_data_last_date)
+        # WIG needs to be always downloaded
+        get_latest_stocks(['WIG'] + available_stock_symbols, download_data_start_date, download_data_last_date)
         get_latest_stocks(available_etf_symbols, download_data_start_date, download_data_last_date)
         get_latest_currencies(available_currency_symbols, download_data_start_date, download_data_last_date)
 
+    # TODO: the stats are not shown for 'CNG', because not all days were traded
     if analyse_stocks is True:
-        df = build_stocks_dataframe(available_stock_symbols, stocks_time_frame)
-        compute_and_show_stock_statistics(df,
-                                          symbols=stocks_for_stats,
-                                          window_1=stocks_window_1,
-                                          window_2=stocks_window_2)
+        # WIG is mandatory because it's used to determine trading dates
+        symbols = ['WIG'] + available_stock_symbols
+        df = build_stocks_dataframe(symbols, stocks_time_frame)
+        compute_and_show_stock_stats(df, symbols=stocks_for_stats, window_1=stocks_window_1, window_2=stocks_window_2)
 
     if analyse_etfs is True:
-        df = build_stocks_dataframe(available_etf_symbols, etfs_time_frame)
-        compute_and_show_stock_statistics(df,
-                                          symbols=etfs_for_stats,
-                                          window_1=etfs_window_1,
-                                          window_2=etfs_window_2)
+        # WIG is mandatory because it's used to determine trading dates
+        symbols = ['WIG'] + available_etf_symbols
+        df = build_stocks_dataframe(symbols, etfs_time_frame)
+        compute_and_show_stock_stats(df, symbols=etfs_for_stats, window_1=etfs_window_1, window_2=etfs_window_2)
 
     if analyse_currencies is True:
         df = build_currency_dataframe(available_currency_symbols, currencies_time_frame)
-        compute_and_show_currency_statistics(df,
-                                             symbols=currencies_for_stats,
-                                             window_1=currencies_window_1,
-                                             window_2=currencies_window_2)
+        compute_and_show_currency_stats(df,
+                                        symbols=currencies_for_stats,
+                                        window_1=currencies_window_1,
+                                        window_2=currencies_window_2)
 
 if __name__ == "__main__":
     test_run()

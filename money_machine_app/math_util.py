@@ -46,7 +46,7 @@ def convert_values_on_x_axis(intersection_points, y_series):
     for intersect_point in intersection_points:
         # determine date of closest next day after intersection took place
         # print("+++++ intersect point: ", intersect_point[0])
-        day_number = round(intersect_point[0])  # alternative: math.ceil(intersect_point[0])
+        day_number = int(round(intersect_point[0]))  # alternative: math.ceil(intersect_point[0])
         date = y_series.index.values[day_number]
         # print("+++++ calculated date: ", date)
         corrected_intersection_points.append(array([date, intersect_point[1]]))

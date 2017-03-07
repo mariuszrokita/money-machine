@@ -155,7 +155,7 @@ def compute_and_show_stock_stats(df, symbols, window_1, window_2):
 
 
 def get_last_date_of_current_year():
-    """Return a string representing the last date of current year in ISO 8601 format, ‘YYYY-MM-DD’."""
+    """Return a string representing the last date of current year in ISO 8601 format, 'YYYY-MM-DD'."""
     return date(year=date.today().year, month=12, day=31).isoformat()
 
 

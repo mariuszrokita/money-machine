@@ -1,5 +1,6 @@
-import urllib.request
 import os
+import sys
+import urllib.request
 
 
 def get_source_url(stock_symbol, start_date, end_date):
@@ -61,9 +62,31 @@ def download_data(stock_symbol="KRU", start_date="2012-01-01", end_date="2016-12
 
 
 if __name__ == "__main__":
-    start = '2012-01-01'
-    end = '2016-12-31'
+    # print("0: ", sys.argv[0])
+    # print("1: ", sys.argv[1])
+    # print("2: ", sys.argv[2])
+    # print("3: ", sys.argv[3])
 
-    stock_symbols = ['WIG', 'KRU', 'JSW', 'ETFW20L.PL']
-    for symbol in stock_symbols:
-        download_data(symbol, start, end)
+    start = sys.argv[1]
+    if not start:
+        start = '2012-01-01'
+
+    end = sys.argv[2]
+    if not end:
+        end = '2017-12-31'
+
+    stock_symbols = sys.argv[3].split(";")
+    if not stock_symbols:
+        stock_symbols = ['WIG', 'KRU', 'JSW', 'ETFW20L.PL']
+
+    for stock_symbol in stock_symbols:
+        print("=== download_data('%s', '%s', '%s')" % (stock_symbol, start, end))
+        download_data(stock_symbol, start, end)
+        print("")
+
+    # start = '2012-01-01'
+    # end = '2016-12-31'
+    #
+    # stock_symbols = ['WIG', 'KRU', 'JSW', 'ETFW20L.PL']
+    # for symbol in stock_symbols:
+    #     download_data(symbol, start, end)

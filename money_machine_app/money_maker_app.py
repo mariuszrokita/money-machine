@@ -172,10 +172,10 @@ def get_latest_currencies(symbols, start_date, end_date):
 def test_run():
 
     # choose what you want to do
-    download_data = False
-    analyse_stocks = True
-    analyse_etfs = True
-    analyse_currencies = True
+    download_data = True
+    analyse_stocks = False
+    analyse_etfs = False
+    analyse_currencies = False
 
     # download latest data for all assets we are interested in
     available_stock_symbols = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']

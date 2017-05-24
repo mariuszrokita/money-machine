@@ -33,6 +33,7 @@ def compute_and_show_currency_stats(df, symbols, window_1, window_2):
         upper_band, lower_band = stats_util.get_bollinger_bands(sma2, rstd)
 
         # visualize data
+        plt.figure(figsize=(20, 15))
         ax = df[symbol].plot(title="{} - statistics".format(symbol),
                              color='b',
                              label="{} exchange rates".format(symbol))
@@ -99,6 +100,7 @@ def compute_and_show_stock_stats(df, symbols, window_1, window_2):
         upper_band, lower_band = stats_util.get_bollinger_bands(sma2, rstd)
 
         # visualize data
+        plt.figure(figsize=(20, 15))
         ax = df[symbol].plot(title="{} - statistics".format(symbol),
                              color='b',
                              label="{} exchange rates".format(symbol))
@@ -172,53 +174,34 @@ def get_latest_currencies(symbols, start_date, end_date):
         cdd.download_data(currency_symbol=symbol, start_date=start_date, end_date=end_date)
 
 
-def analyse_currencies(currency_symbols):
-    # configuration
-    currencies_time_frame = pd.date_range('2016-01-01', '2017-12-31')
-    currencies_window_1 = 5
-    currencies_window_2 = 20
-
-    df = build_currency_dataframe(currency_symbols, currencies_time_frame)
-    compute_and_show_currency_stats(df,
-                                    symbols=currency_symbols,
-                                    window_1=currencies_window_1,
-                                    window_2=currencies_window_2)
+def analyse_currencies(symbols, time_start='2016-01-01', time_end='2017-12-31', window_1=5, window_2=20):
+    time_frame = pd.date_range(time_start, time_end)
+    df = build_currency_dataframe(symbols, time_frame)
+    compute_and_show_currency_stats(df, symbols=symbols, window_1=window_1, window_2=window_2)
 
 
-def analyse_stocks(stock_symbols):
-    # configuration
-    stocks_time_frame = pd.date_range('2016-01-01', '2017-12-31')
-    stocks_window_1 = 15  # popular pairs: 15 and 45, 10 and 50.
-    stocks_window_2 = 45
-
+def analyse_stocks(symbols, time_start='2016-01-01', time_end='2017-12-31', window_1=15, window_2=45):
+    # Popular pairs: 15 and 45, 10 and 50.
     # WIG is mandatory because it's used to determine trading dates
-    symbols = ['WIG'] + stock_symbols
-    df = build_stocks_dataframe(symbols, stocks_time_frame)
-    compute_and_show_stock_stats(df,
-                                 symbols=symbols,
-                                 window_1=stocks_window_1,
-                                 window_2=stocks_window_2)
+    symbols_extended = ['WIG'] + symbols
+    time_frame = pd.date_range(time_start, time_end)
+    df = build_stocks_dataframe(symbols_extended, time_frame)
+    compute_and_show_stock_stats(df, symbols=symbols_extended, window_1=window_1, window_2=window_2)
 
 
-def analyse_etfs(etf_symbols):
-    etfs_time_frame = pd.date_range('2016-01-01', '2017-12-31')
-    etfs_window_1 = 10
-    etfs_window_2 = 50
-
+def analyse_etfs(symbols, time_start='2016-01-01', time_end='2017-12-31', window_1=10, window_2=50):
     # WIG is mandatory because it's used to determine trading dates
-    symbols = ['WIG'] + etf_symbols
-    df = build_stocks_dataframe(symbols, etfs_time_frame)
-    compute_and_show_stock_stats(df,
-                                 symbols=etf_symbols,
-                                 window_1=etfs_window_1,
-                                 window_2=etfs_window_2)
+    symbols_extended = ['WIG'] + symbols
+    time_frame = pd.date_range(time_start, time_end)
+    df = build_stocks_dataframe(symbols_extended, time_frame)
+    compute_and_show_stock_stats(df, symbols=symbols_extended, window_1=window_1, window_2=window_2)
 
 
 if __name__ == "__main__":
-    print("debugging")
-    print("0: ", sys.argv[0])
-    print("1: ", sys.argv[1])
-    print("2: ", sys.argv[2])
+    # print("debugging")
+    # print("0: ", sys.argv[0])
+    # print("1: ", sys.argv[1])
+    # print("2: ", sys.argv[2])
 
     analysis_type = sys.argv[1]
     if analysis_type:

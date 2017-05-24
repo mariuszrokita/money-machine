@@ -2,14 +2,17 @@
 Main application file.
 """
 
-import pandas as pd
 import matplotlib.pyplot as plt
-import money_machine_app.io_util as util
-import money_machine_app.math_util as math_util
-import money_machine_app.stats_util as stats_util
-import money_machine_app.stocks_data_downloader as sdd
-import money_machine_app.currency_data_downloader as cdd
+import pandas as pd
+import sys
 from datetime import date
+
+import utils.io_util as util
+import utils.math_util as math_util
+import utils.stats_util as stats_util
+
+import downloaders.stocks_data_downloader as sdd
+import downloaders.currency_data_downloader as cdd
 
 
 def build_currency_dataframe(symbols, dates):
@@ -169,64 +172,66 @@ def get_latest_currencies(symbols, start_date, end_date):
         cdd.download_data(currency_symbol=symbol, start_date=start_date, end_date=end_date)
 
 
-def test_run():
-
-    # choose what you want to do
-    download_data = True
-    analyse_stocks = False
-    analyse_etfs = False
-    analyse_currencies = False
-
-    # download latest data for all assets we are interested in
-    available_stock_symbols = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
-    available_etf_symbols = ['GPW', 'ETFW20L.PL', 'ETFSP500.PL', 'ETFDAX.PL']
-    available_currency_symbols = ['EUR', 'USD', 'GBP', 'CHF']
-    download_data_start_date = "2012-01-01"
-    download_data_last_date = get_last_date_of_current_year()
-
-    # configure stock analysis
-    stocks_time_frame = pd.date_range('2016-01-01', '2017-12-31')
-    stocks_for_stats = ['KRU', 'KGH', 'IPT', 'CDR', 'LVC', 'ITG', 'PKO', 'JSW', 'CNG', 'WLT']
-    stocks_window_1 = 15  # popular pairs: 15 and 45, 10 and 50.
-    stocks_window_2 = 45
-
-    # configure ETF analysis
-    etfs_time_frame = pd.date_range('2016-01-01', '2017-12-31')
-    etfs_for_stats = ['ETFW20L.PL', 'ETFSP500.PL']
-    etfs_window_1 = 10
-    etfs_window_2 = 50
-
-    # configure currency analysis
+def analyse_currencies(currency_symbols):
+    # configuration
     currencies_time_frame = pd.date_range('2016-01-01', '2017-12-31')
-    currencies_for_stats = ['EUR', 'USD', 'GBP', 'CHF']
     currencies_window_1 = 5
     currencies_window_2 = 20
 
-    if download_data is True:
-        # WIG needs to be always downloaded
-        get_latest_stocks(['WIG'] + available_stock_symbols, download_data_start_date, download_data_last_date)
-        get_latest_stocks(available_etf_symbols, download_data_start_date, download_data_last_date)
-        get_latest_currencies(available_currency_symbols, download_data_start_date, download_data_last_date)
+    df = build_currency_dataframe(currency_symbols, currencies_time_frame)
+    compute_and_show_currency_stats(df,
+                                    symbols=currency_symbols,
+                                    window_1=currencies_window_1,
+                                    window_2=currencies_window_2)
 
-    # TODO: the stats are not shown for 'CNG', because not all days were traded
-    if analyse_stocks is True:
-        # WIG is mandatory because it's used to determine trading dates
-        symbols = ['WIG'] + available_stock_symbols
-        df = build_stocks_dataframe(symbols, stocks_time_frame)
-        compute_and_show_stock_stats(df, symbols=stocks_for_stats, window_1=stocks_window_1, window_2=stocks_window_2)
 
-    if analyse_etfs is True:
-        # WIG is mandatory because it's used to determine trading dates
-        symbols = ['WIG'] + available_etf_symbols
-        df = build_stocks_dataframe(symbols, etfs_time_frame)
-        compute_and_show_stock_stats(df, symbols=etfs_for_stats, window_1=etfs_window_1, window_2=etfs_window_2)
+def analyse_stocks(stock_symbols):
+    # configuration
+    stocks_time_frame = pd.date_range('2016-01-01', '2017-12-31')
+    stocks_window_1 = 15  # popular pairs: 15 and 45, 10 and 50.
+    stocks_window_2 = 45
 
-    if analyse_currencies is True:
-        df = build_currency_dataframe(available_currency_symbols, currencies_time_frame)
-        compute_and_show_currency_stats(df,
-                                        symbols=currencies_for_stats,
-                                        window_1=currencies_window_1,
-                                        window_2=currencies_window_2)
+    # WIG is mandatory because it's used to determine trading dates
+    symbols = ['WIG'] + stock_symbols
+    df = build_stocks_dataframe(symbols, stocks_time_frame)
+    compute_and_show_stock_stats(df,
+                                 symbols=symbols,
+                                 window_1=stocks_window_1,
+                                 window_2=stocks_window_2)
+
+
+def analyse_etfs(etf_symbols):
+    etfs_time_frame = pd.date_range('2016-01-01', '2017-12-31')
+    etfs_window_1 = 10
+    etfs_window_2 = 50
+
+    # WIG is mandatory because it's used to determine trading dates
+    symbols = ['WIG'] + etf_symbols
+    df = build_stocks_dataframe(symbols, etfs_time_frame)
+    compute_and_show_stock_stats(df,
+                                 symbols=etf_symbols,
+                                 window_1=etfs_window_1,
+                                 window_2=etfs_window_2)
+
 
 if __name__ == "__main__":
-    test_run()
+    print("debugging")
+    print("0: ", sys.argv[0])
+    print("1: ", sys.argv[1])
+    print("2: ", sys.argv[2])
+
+    analysis_type = sys.argv[1]
+    if analysis_type:
+        data = sys.argv[2]
+
+        if analysis_type == "CURRENCY":
+            currencies = data.split(";")
+            analyse_currencies(currencies)
+
+        if analysis_type == "STOCK":
+            stock_symbols = data.split(";")
+            analyse_stocks(stock_symbols)
+
+        if analysis_type == 'ETF':
+            etf_symbols = data.split(';')
+            analyse_etfs(etf_symbols)

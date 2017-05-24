@@ -4,12 +4,12 @@ import os
 import pandas as pd
 
 
-def get_base_dir(folder="../data-archive"):
+def get_base_dir(folder="../../data-archive"):
     current_file = os.path.abspath(os.path.dirname(__file__))
     return os.path.join(current_file, folder)
 
 
-def symbol_to_path(symbol, base_dir="../data-archive", sub_folder=""):
+def symbol_to_path(symbol, base_dir, sub_folder=""):
     """Return CSV file path given ticker symbol."""
     return os.path.join(base_dir, sub_folder, "{}.csv".format(str(symbol)))
 

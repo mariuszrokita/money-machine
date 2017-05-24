@@ -28,12 +28,12 @@ def get_csv(url):
     return '\n'.join(content_lines)
 
 
-def get_base_dir(folder="../data-archive"):
+def get_base_dir(folder="../../data-archive"):
     current_file = os.path.abspath(os.path.dirname(__file__))
     return os.path.join(current_file, folder)
 
 
-def symbol_to_path(symbol, base_dir="../data-archive", sub_folder="currencies"):
+def symbol_to_path(symbol, base_dir, sub_folder="currencies"):
     """Return CSV file path given ticker symbol."""
     return os.path.join(base_dir, sub_folder, "{}.csv".format(str(symbol)))
 
@@ -58,6 +58,7 @@ def download_data(currency_symbol="EUR", start_date="2013-01-01", end_date="2016
 
 
 if __name__ == "__main__":
+    # print("debugging")
     # print("0: ", sys.argv[0])
     # print("1: ", sys.argv[1])
     # print("2: ", sys.argv[2])

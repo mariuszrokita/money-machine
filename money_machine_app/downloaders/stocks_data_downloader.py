@@ -31,12 +31,12 @@ def get_csv(url):
     return content
 
 
-def get_base_dir(folder="../data-archive"):
+def get_base_dir(folder="../../data-archive"):
     current_file = os.path.abspath(os.path.dirname(__file__))
     return os.path.join(current_file, folder)
 
 
-def symbol_to_path(symbol, base_dir="../data-archive", subfolder="stocks"):
+def symbol_to_path(symbol, base_dir, subfolder="stocks"):
     """Return CSV file path given ticker symbol."""
     return os.path.join(base_dir, subfolder, "{}.csv".format(str(symbol)))
 
@@ -62,6 +62,7 @@ def download_data(stock_symbol="KRU", start_date="2012-01-01", end_date="2016-12
 
 
 if __name__ == "__main__":
+    # print("debugging")
     # print("0: ", sys.argv[0])
     # print("1: ", sys.argv[1])
     # print("2: ", sys.argv[2])
@@ -83,10 +84,3 @@ if __name__ == "__main__":
         print("=== download_data('%s', '%s', '%s')" % (stock_symbol, start, end))
         download_data(stock_symbol, start, end)
         print("")
-
-    # start = '2012-01-01'
-    # end = '2016-12-31'
-    #
-    # stock_symbols = ['WIG', 'KRU', 'JSW', 'ETFW20L.PL']
-    # for symbol in stock_symbols:
-    #     download_data(symbol, start, end)

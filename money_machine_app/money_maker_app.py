@@ -49,10 +49,10 @@ def compute_and_show_currency_stats(df, symbols, window_1, window_2):
         sma1_sma2_intersection_points = math_util.get_intersection_points(sma1, sma2)
         for intersect_point in sma1_sma2_intersection_points:
             plt.plot(intersect_point[0], intersect_point[1], 'mo')
-            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m")
             ax.text(intersect_point[0],                                                     # x-axis
                     intersect_point[1] + 0.005,                                             # y-axis
-                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    "{} ({})".format(round(intersect_point[1], 2), date_to_print),          # text
                     color="magenta",
                     fontsize=11)
 
@@ -70,20 +70,20 @@ def compute_and_show_currency_stats(df, symbols, window_1, window_2):
         er_ub_intersection_points = math_util.get_intersection_points(exchange_rates_for_analysis, upper_band)
         for intersect_point in er_ub_intersection_points:
             plt.plot(intersect_point[0], intersect_point[1], 'ro')
-            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m")
             ax.text(intersect_point[0],                                                     # x-axis
                     intersect_point[1] + 0.005,                                             # y-axis
-                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    "{} ({})".format(round(intersect_point[1], 2), date_to_print),          # text
                     color="red",
                     fontsize=11)
 
         er_lb_intersection_points = math_util.get_intersection_points(exchange_rates_for_analysis, lower_band)
         for intersect_point in er_lb_intersection_points:
             plt.plot(intersect_point[0], intersect_point[1], 'go')
-            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m")
             ax.text(intersect_point[0],                                                     # x-axis
                     intersect_point[1] + 0.005,                                             # y-axis
-                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    "{} ({})".format(round(intersect_point[1], 2), date_to_print),          # text
                     color="green",
                     fontsize=11)
 
@@ -116,10 +116,10 @@ def compute_and_show_stock_stats(df, symbols, window_1, window_2):
         sma1_sma2_intersection_points = math_util.get_intersection_points(sma1, sma2)
         for intersect_point in sma1_sma2_intersection_points:
             plt.plot(intersect_point[0], intersect_point[1], 'mo')
-            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m")
             ax.text(intersect_point[0],                                                     # x-axis
                     intersect_point[1] * 1.01,                                              # y-axis
-                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    "{} ({})".format(round(intersect_point[1], 2), date_to_print),          # text
                     color="magenta",
                     fontsize=11)
 
@@ -137,20 +137,20 @@ def compute_and_show_stock_stats(df, symbols, window_1, window_2):
         sq_ub_intersection_points = math_util.get_intersection_points(stock_values_for_analysis, upper_band)
         for intersect_point in sq_ub_intersection_points:
             plt.plot(intersect_point[0], intersect_point[1], 'ro')
-            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m")
             ax.text(intersect_point[0],                                                     # x-axis
                     intersect_point[1] * 1.01,                                              # y-axis
-                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    "{} ({})".format(round(intersect_point[1], 2), date_to_print),          # text
                     color="red",
                     fontsize=11)
 
         sq_lb_intersection_points = math_util.get_intersection_points(stock_values_for_analysis, lower_band)
         for intersect_point in sq_lb_intersection_points:
             plt.plot(intersect_point[0], intersect_point[1], 'go')
-            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m.%Y")
+            date_to_print = pd.to_datetime(str(intersect_point[0])).strftime("%d.%m")
             ax.text(intersect_point[0],                                                     # x-axis
                     intersect_point[1] * 1.01,                                              # y-axis
-                    "{} ({})".format(round(intersect_point[1], 4), date_to_print),          # text
+                    "{} ({})".format(round(intersect_point[1], 2), date_to_print),          # text
                     color="green",
                     fontsize=11)
 
@@ -194,7 +194,7 @@ def analyse_etfs(symbols, time_start='2016-01-01', time_end='2017-12-31', window
     symbols_extended = ['WIG'] + symbols
     time_frame = pd.date_range(time_start, time_end)
     df = build_stocks_dataframe(symbols_extended, time_frame)
-    compute_and_show_stock_stats(df, symbols=symbols_extended, window_1=window_1, window_2=window_2)
+    compute_and_show_stock_stats(df, symbols=symbols, window_1=window_1, window_2=window_2)
 
 
 if __name__ == "__main__":
